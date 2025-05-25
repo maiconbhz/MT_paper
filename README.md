@@ -82,6 +82,5 @@ WIDN_API_KEY
 
 ## 🧠 Author
 
-**Maicon Rodrigues Albuquerque**
-Universidade Federal de Minas Gerais (UFMG)
+**Maicon Rodrigues Albuquerque** - Universidade Federal de Minas Gerais (UFMG)
 
