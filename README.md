@@ -1,72 +1,77 @@
 # Translation Quality Evaluation with COMET and Statistical Modeling using GEE
 
-This repository contains a full pipeline for evaluating the quality of machine and human translations between English and Brazilian Portuguese (in both directions: EN→PT and PT→EN). The evaluation is performed using the COMET model (`Unbabel/XCOMET-XL`), and results are analyzed statistically using Generalized Estimating Equations (GEE) to compare translation systems and psychometric scales.
+This repository contains a complete pipeline for evaluating the quality of machine and human translations between English and Brazilian Portuguese (in both directions: EN→PT and PT→EN). The evaluation is conducted using the COMET model (`Unbabel/XCOMET-XL`), and statistical modeling is applied using Generalized Estimating Equations (GEE) to compare translation systems and psychological/health-related scales.
 
 ---
 
-## Structure and Execution Order
+## 📁 Repository Structure and Execution Order
 
-### 1. Machine Translation
+### 1. `MT_Code/` — Machine Translation
 
-These scripts use commercial APIs (Azure, DeepL, OpenAI, Widn.AI) to generate translations:
+These scripts use commercial APIs (Azure, DeepL, OpenAI, Widn.AI) to generate automatic translations:
 
 * **`Machine_Translation_ENtoPT.py`**
-  Performs forward translations (English to Portuguese). The output is saved in `combined_translations.csv`.
-  ⚠️ API keys must be configured as environment variables.
+  Translates from English to Portuguese.
+  ➤ Output: `combined_translations.csv`
 
 * **`Machine_Translation_PTtoEN.py`**
-  Performs back-translations (Portuguese to English), using the published Portuguese version as the source.
-  Outputs `combined_back_translations.csv`.
-  ⚠️ Requires the same API configuration.
+  Translates from Portuguese to English (back-translation).
+  ➤ Output: `combined_back_translations.csv`
+
+⚠️ These scripts require API keys set as environment variables (`AZURE_API_KEY`, `DEEPL_API_KEY`, `OPENAI_API_KEY`, `WIDN_API_KEY`).
 
 ---
 
-### 2. COMET Evaluation
+### 2. `COMET_Analysis/` — Translation Evaluation with COMET
 
-These scripts assess translation quality by comparing each MT output with a human reference using the COMET model:
+These scripts assess the quality of the translations using COMET, comparing them against human references:
 
 * **`COMET_ENtoPT_analysis_with_reference.py`**
   Evaluates EN→PT translations using the published Portuguese version as reference.
-  Outputs `COMET_result_ENtoPT_with_reference.csv`.
+  ➤ Output: `COMET_result_ENtoPT_with_reference.csv`
 
 * **`COMET_PTtoEN_analysis_with_reference.py`**
   Evaluates PT→EN back-translations using the original English version as reference.
-  Outputs `COMET_result_PTtoEN_with_reference.csv`.
+  ➤ Output: `COMET_result_PTtoEN_with_reference.csv`
 
 ---
 
-### 3. Statistical Analysis (GEE)
+### 3. `GEE_Analysis/` — Statistical Analysis (GEE)
 
-These scripts apply Generalized Estimating Equations to analyze COMET scores across translation systems and scales:
+These scripts apply Generalized Estimating Equations (GEE) to analyze COMET scores across systems and instruments:
 
 * **`GEE_ENtoPT.py`**
-  Fits GEE models (Gaussian and Gamma) for forward translations.
-  Produces summary tables and bar plots saved in the `Figures/` folder.
+  Statistical analysis of COMET results for EN→PT translations.
+  ➤ Outputs plots to `Figures/COMET_Translation_Scales_ENtoPT.png`
 
 * **`GEE_PTtoEN.py`**
-  Performs the same analyses for back-translations.
-  Also generates graphs and statistical summaries.
+  Statistical analysis for PT→EN back-translations.
+  ➤ Outputs plots to `Figures/COMET_Translation_Scales_PTtoEN.png`
+
+Both scripts fit Gaussian and Gamma GEE models and print QIC model comparison metrics.
 
 ---
 
-## Technical Notes
+### 4. `Files/` — Input and Output Data
 
-* COMET evaluation is performed using the `Unbabel/XCOMET-XL` model.
-* The `contractions` library is used to normalize text inputs before scoring.
-* GEE models account for repeated measures across items and control for scale effects.
-* Resulting figures show system-level comparisons and COMET quality thresholds (e.g., >0.94 = "Good").
+This folder is intended to contain all `.csv` files used as input/output across stages, such as:
+
+* `combined_translations.csv`
+* `combined_back_translations.csv`
+* `COMET_result_ENtoPT_with_reference.csv`
+* `COMET_result_PTtoEN_with_reference.csv`
 
 ---
 
-## Requirements
+## ⚙️ Requirements
 
-To run the pipeline, install the required packages:
+Install the required packages:
 
 ```bash
 pip install pandas numpy seaborn matplotlib statsmodels openai deepl contractions tqdm
 ```
 
-Also, configure the following environment variables with your API keys:
+Set the following environment variables with your API keys before running the MT scripts:
 
 ```
 AZURE_API_KEY  
@@ -75,7 +80,7 @@ OPENAI_API_KEY
 WIDN_API_KEY  
 ```
 
-## Author
+## 🧠 Author
 
 **Maicon Rodrigues Albuquerque**
 Universidade Federal de Minas Gerais (UFMG)
