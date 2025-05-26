@@ -4,9 +4,9 @@ This repository contains a complete pipeline for evaluating the quality of machi
 
 ---
 
-## 📁 Repository Structure and Execution Order
+# 📁 Repository Structure and Execution Order
 
-### 1. `MT_Code/` — Machine Translation
+## 1. `MT_Code/` — Machine Translation
 
 These scripts use commercial APIs (Azure, DeepL, OpenAI, Widn.AI) to generate automatic translations:
 
@@ -22,7 +22,7 @@ These scripts use commercial APIs (Azure, DeepL, OpenAI, Widn.AI) to generate au
 
 ---
 
-### 2. `COMET_Analysis/` — Translation Evaluation with COMET
+# 2. `COMET_Analysis/` — Translation Evaluation with COMET
 
 These scripts assess the quality of the translations using COMET, comparing them against human references:
 
@@ -36,7 +36,7 @@ These scripts assess the quality of the translations using COMET, comparing them
 
 ---
 
-### 3. `GEE_Analysis/` — Statistical Analysis (GEE)
+# 3. `GEE_Analysis/` — Statistical Analysis (GEE)
 
 These scripts apply Generalized Estimating Equations (GEE) to analyze COMET scores across systems and instruments:
 
@@ -52,7 +52,7 @@ Both scripts fit Gaussian and Gamma GEE models and print QIC model comparison me
 
 ---
 
-### 4. `Files/` — Input and Output Data
+# 4. `Files/` — Input and Output Data
 
 This folder is intended to contain all `.csv` files used as input/output across stages, such as:
 
@@ -63,7 +63,7 @@ This folder is intended to contain all `.csv` files used as input/output across 
 
 ---
 
-## ⚙️ Requirements
+# ⚙️ Requirements
 
 Install the required packages:
 
